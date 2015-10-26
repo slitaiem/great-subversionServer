@@ -10,9 +10,9 @@ import com.pfe.domain.Location;
 import com.pfe.domain.User;
 
 /**
- * Session Bean implementation class LocationService
+ * Session Bean implementation class  LocationService
  */
-@Stateless
+@Stateless 
 @LocalBean
 public class LocationDAO implements LocationDAORemote {
 
