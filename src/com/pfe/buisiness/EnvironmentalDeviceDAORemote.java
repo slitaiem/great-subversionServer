@@ -15,6 +15,8 @@ public interface EnvironmentalDeviceDAORemote {
 
 	EnvironmentalDevice getEndTerminaDevice(int deviceId);
 
-	EnvironmentalDevice getBDPDevice(String UuId);
+	EnvironmentalDevice getBDPDevice(String UuId,int idLocation);
 	List<BDP>  getBDPDevicesByLocationID(String[]idLocation);
+	List<BDP>  getAllBDPDevices();
+	
 }

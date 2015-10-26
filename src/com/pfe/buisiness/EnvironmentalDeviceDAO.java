@@ -37,7 +37,7 @@ public class EnvironmentalDeviceDAO implements EnvironmentalDeviceDAORemote {
 
 	@Override
 	public void addDevice(EnvironmentalDevice device) {
-		if((device instanceof BDP && getBDPDevice(((BDP) device).getUuId())== null) 
+		if((device instanceof BDP && getBDPDevice(((BDP) device).getUuId(),((BDP) device).getLocation().getIdLocation() )== null) 
 				|| device instanceof EndTerminal){
 			entityManager.persist(device);
 		}
@@ -46,10 +46,11 @@ public class EnvironmentalDeviceDAO implements EnvironmentalDeviceDAORemote {
 	}
 	
 	@Override
-	public EnvironmentalDevice getBDPDevice(String UuId) {
-		BDP bdp;
-		Query q = entityManager.createQuery("SELECT b FROM BDP b WHERE b.UuId = :UuId ");
+	public EnvironmentalDevice getBDPDevice(String UuId, int idLocation) {
+		BDP bdp = null;
+		Query q = entityManager.createQuery("SELECT b FROM BDP b JOIN b.locations l WHERE b.UuId = :UuId and l.idLocation = :idLocation  ");
 	     q.setParameter("UuId", UuId);
+	     q.setParameter("idLocation", idLocation);
 	     try{
 	    	 
 	    	 bdp = (BDP) q.getSingleResult();
@@ -75,6 +76,18 @@ public class EnvironmentalDeviceDAO implements EnvironmentalDeviceDAORemote {
 				+ " WHERE  l.idLocation in :idLocation ");
 		List<String> ids = Arrays.asList(idLocation);
 		query.setParameter("idLocation", ids); 
+		
+		query.toString();
+		//query.unwrap(org.hibernate.).getQueryString()
+		List<BDP> bdps = (List<BDP>) query.getResultList();
+		
+		return bdps;
+	}
+
+	@Override
+	public List<BDP> getAllBDPDevices() {
+		Query query = entityManager.createQuery("SELECT distinct b FROM BDP b ");
+		
 		
 		query.toString();
 		//query.unwrap(org.hibernate.).getQueryString()

@@ -12,6 +12,7 @@
 	<class>com.pfe.domain.Profile</class>
 	<class>com.pfe.domain.PublicService</class>
 	<class>com.pfe.domain.Service</class>
+	<class>com.pfe.domain.ServiceCategory</class>
 	<class>com.pfe.domain.ServiceContent</class>
 	<class>com.pfe.domain.Student</class>
 	<class>com.pfe.domain.Teacher</class>

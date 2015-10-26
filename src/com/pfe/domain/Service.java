@@ -16,6 +16,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,6 +35,7 @@ public class Service implements Serializable{
 	private String serviceName;
 	private String serviceDescription;
 	private List<Location> locations = new ArrayList<Location>();
+	private ServiceCategory serviceCategory;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -84,6 +86,14 @@ public class Service implements Serializable{
 	public boolean equals(Object service) {
 		// TODO Auto-generated method stub
 		return (this.getServiceName().equals(serviceName) );
+	}
+	
+	@ManyToOne
+	public ServiceCategory getServiceCategory() {
+		return serviceCategory;
+	}
+	public void setServiceCategory(ServiceCategory serviceCategory) {
+		this.serviceCategory = serviceCategory;
 	}
 	
 }

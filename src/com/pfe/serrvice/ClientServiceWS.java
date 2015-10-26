@@ -14,6 +14,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import com.pfe.buisiness.EnvironmentalDeviceDAO;
+import com.pfe.buisiness.ServiceCategoryDAO;
 import com.pfe.buisiness.ServiceDAO;
 import com.pfe.buisiness.ServiceDAORemote;
 import com.pfe.buisiness.UserDAO;
@@ -32,7 +34,10 @@ public class ClientServiceWS {
 	UserDAO userDAO;
 	@EJB
 	ServiceDAO serviceDAO;
-
+	@EJB
+	ServiceCategoryDAO serviceCategoryDAO;
+	@EJB
+	EnvironmentalDeviceDAO environmentalDeviceDAO;
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("/authenticateUser/")
@@ -42,8 +47,11 @@ public class ClientServiceWS {
 		
 		if(userOriginal != null){
 			userInfos = userOriginal.deepCopy();	
-			
+
+			userInfos.setServiceCategories(serviceCategoryDAO.getServiceCategories());
+			userInfos.setBdps(environmentalDeviceDAO.getAllBDPDevices());
 		}
+		
 		// TODO Auto-generated method stub
 		return userInfos;
 

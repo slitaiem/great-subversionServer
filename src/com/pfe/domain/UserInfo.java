@@ -35,7 +35,7 @@ public class UserInfo implements Serializable{
 	private List<Profile> userProfiles =new ArrayList<Profile>();
 	private List<PrivateService> privateServices=new ArrayList<PrivateService>();
 	private List<BDP> bdps = new ArrayList<BDP>();
-	
+	private List<ServiceCategory> serviceCategories = new ArrayList<ServiceCategory>();
 	
 	public String getIdUser() {
 		return idUser;
@@ -87,5 +87,17 @@ public class UserInfo implements Serializable{
 	}
 	public void setPrivateServices(List<PrivateService> privateServices) {
 		this.privateServices = privateServices;
+	}
+	public List<ServiceCategory> getServiceCategories() {
+		return serviceCategories;
+	}
+	public void setServiceCategories(List<ServiceCategory> serviceCategories) {
+		this.serviceCategories = serviceCategories;
+	}
+	public List<BDP> getBdps() {
+		return bdps;
+	}
+	public void setBdps(List<BDP> bdps) {
+		this.bdps = bdps;
 	}
 }
